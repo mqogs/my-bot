@@ -1,3 +1,20 @@
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "ENI & LO Bot is running!"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
+# وبعدها استدعي keep_alive() بالبداية قبل تشغيل البوت
 from telethon import TelegramClient, events
 import time
 import os
